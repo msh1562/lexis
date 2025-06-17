@@ -1,0 +1,17 @@
+# Node.js & Next.js
+node_modules/
+.next/
+.vercel/
+out/
+*.log
+
+# OS
+.DS_Store
+
+# Env
+.env*
+*.pem
+
+# Build
+dist/
+build/
