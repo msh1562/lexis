@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: lexis
+      POSTGRES_PASSWORD: lexis
+      POSTGRES_DB: lexis
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: ./lexis-api
+    environment:
+      DATABASE_URL: postgresql://lexis:lexis@db:5432/lexis
+    volumes:
+      - ./lexis-api:/app
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  web:
+    build: ./lexis-web
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./lexis-web:/app
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
