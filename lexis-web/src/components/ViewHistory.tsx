@@ -9,7 +9,7 @@ export default function ViewHistory({ blockId }: { blockId: number }) {
   useEffect(() => {
     if (!user) return;
 
-    fetch("/api/history/", {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/history/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

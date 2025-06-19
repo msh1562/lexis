@@ -36,7 +36,7 @@ export default function LexifyEditor() {
     if (!text) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/lexify/summary", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/lexify/summary`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -94,7 +94,7 @@ export default function LexifyEditor() {
             setSaving(true);
             const firstLine = text.split("\n")[0];
             try {
-              const res = await fetch("/api/block", {
+              const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/block`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function LexifyEditor() {
               if (res.ok) {
                 const newBlock = await res.json();
                 for (const c of citations) {
-                  await fetch("/api/citation", {
+                  await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/citation`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",

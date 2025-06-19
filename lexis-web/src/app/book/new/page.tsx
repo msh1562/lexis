@@ -23,7 +23,7 @@ export default function NewBookPage() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    fetch("/api/block")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/block`)
       .then((res) => res.json())
       .then(setBlocks);
   }, []);
@@ -41,7 +41,7 @@ export default function NewBookPage() {
   const handleCreate = async () => {
     if (!title || selected.length === 0) return;
     setSaving(true);
-    const res = await fetch("/api/book", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/block`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

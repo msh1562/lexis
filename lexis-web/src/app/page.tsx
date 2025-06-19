@@ -11,7 +11,7 @@ export default function Home() {
   const [selected, setSelected] = useState("all");
 
   const loadTopics = async () => {
-    const res = await fetch("/api/block");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/block`);
     if (res.ok) {
       const data: Block[] = await res.json();
       const unique = [...new Set(data.filter((b) => b.topic).map((b) => b.topic as string))];

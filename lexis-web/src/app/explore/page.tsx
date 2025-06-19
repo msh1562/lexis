@@ -25,7 +25,7 @@ export default function ExplorePage() {
   const [sort, setSort] = useState<string>("newest");
 
   useEffect(() => {
-    fetch("/api/topic")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/topic`)
       .then((res) => (res.ok ? res.json() : []))
       .then((data: TopicNode[]) => setTopics(buildTree(data)));
   }, []);
